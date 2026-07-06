@@ -32,6 +32,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but keep the non-secret templates in the repo
+!.env.example
+!.env.production.example
+
+# backend secret overrides (12-factor style — real credentials live here)
+*.local.php
 
 # vercel
 .vercel

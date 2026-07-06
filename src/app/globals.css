@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: #041b18;
+  --color-surface: #07211d;
+  --color-card: #0d2f28;
+  --color-footer: #02100e;
+
+  --color-content: #ece7d5;
+  --color-muted: #b8bbae;
+  --color-faint: #8e9488;
+
+  --color-accent: #d7d0bc;
+  --color-mexo: #6b9a76;
+  /* Heading highlight — a more dominant coffee/caramel that pops in dark mode */
+  --color-highlight: #cba56a;
+
+  --color-border: rgba(233, 228, 207, 0.12);
+  --color-grid: rgba(184, 195, 168, 0.02);
+
+  --font-display: var(--font-jetbrains), ui-monospace, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light mode — "paper blueprint": warm cream paper, deep-green ink.
+   Overrides the same theme tokens, so every token-based utility adapts. */
+html.light {
+  --color-background: #f2eee1;
+  --color-surface: #ebe6d6;
+  --color-card: #faf7ef;
+  --color-footer: #e7e2d2;
+
+  --color-content: #122a20;
+  --color-muted: #46564b;
+  --color-faint: #6b7a6e;
+
+  --color-accent: #2c5e47;
+  --color-mexo: #2f7d55;
+  /* Heading highlight — green on the cream "paper" light theme */
+  --color-highlight: #2f7d55;
+
+  --color-border: rgba(18, 42, 32, 0.14);
+  --color-grid: rgba(44, 94, 71, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    /* Blueprint engineering grid — fixed across the whole site */
+    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+    color: var(--color-content);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+    color: var(--color-content);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .container-px {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .container-px {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  /* Technical heading: uppercase, wide tracking, monospace */
+  .heading-tech {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+
+  .label-tech {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.7rem;
+  }
+
+  /* Denser blueprint overlay for hero/feature areas */
+  .grid-bg {
+    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .radial-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  /* Engineering panel corner ticks */
+  .corner-ticks {
+    position: relative;
+  }
+  .corner-ticks::before,
+  .corner-ticks::after {
+    content: "+";
+    position: absolute;
+    color: var(--color-faint);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1;
+    opacity: 0.55;
+  }
+  .corner-ticks::before {
+    top: 0.4rem;
+    left: 0.5rem;
+  }
+  .corner-ticks::after {
+    bottom: 0.4rem;
+    right: 0.5rem;
+  }
+}
+
+/* Data-flow marching-ants along dotted connectors */
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+.animate-dashflow {
+  animation: dashflow 0.7s linear infinite;
+}
+
+/* Full-width product showcase marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  /* !important so the global reduced-motion reset below can't freeze the
+     product showcase — this is an intentional, continuous auto-scroll. */
+  animation: marquee 40s linear infinite !important;
+  will-change: transform;
+}
+
+/* Faster variant for the compact hero tech-pill marquee */
+.animate-marquee-pills {
+  animation: marquee 28s linear infinite !important;
+  will-change: transform;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #02100e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a3b33;
+  border-radius: 999px;
+  border: 2px solid #02100e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a4f45;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #e7e2d2;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #c3bda8;
+  border: 2px solid #e7e2d2;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #a9a487;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

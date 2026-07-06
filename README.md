@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dave (Yuki) — Portfolio
 
-## Getting Started
+Premium portfolio for **Dave (Yuki)**, Full Stack Developer & Founder of **MEXO**. Built to feel like a founder's product landing page, not a resume.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) · **TypeScript**
+- **Tailwind CSS v4** (CSS-first theming in `globals.css`)
+- **Framer Motion** for scroll reveals, the interactive hero diagram, and metric counters
+- **Lucide React** icons
+- Fonts: **Space Grotesk** (display) + **Inter** (body) via `next/font`
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/            layout (SEO metadata + fonts), page, sitemap, robots, globals.css
+  lib/data.ts     single source of truth for ALL site content
+  components/     one file per section + ui/ primitives + motion/ helpers
+public/resume.pdf placeholder resume (replace with the real one)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+Almost everything (copy, projects, experience, metrics, social links) lives in
+[`src/lib/data.ts`](src/lib/data.ts). Update there — components read from it.
 
-To learn more about Next.js, take a look at the following resources:
+## Before going live
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Replace `public/resume.pdf` with the real resume.
+- Fill in real URLs/handles in `profile.socials` and the Buy Me a Coffee links.
+- Set the real domain in `layout.tsx` (`siteUrl`), `sitemap.ts`, and `robots.ts`.
+- Update MEXO metrics in `data.ts` with live numbers and the real platform URL.
+- Add an Open Graph image (`/opengraph-image`) for richer link previews.

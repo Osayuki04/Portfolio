@@ -1,0 +1,10 @@
+# Route every request through the front controller, preserving the path
+# as PATH_INFO so index.php can dispatch it.
+RewriteEngine On
+
+# Allow real files (none expected) to pass through.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^(.*)$ index.php [QSA,L]
