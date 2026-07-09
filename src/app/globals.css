@@ -12,7 +12,7 @@
 
   --color-accent: #d7d0bc;
   --color-mexo: #6b9a76;
-  /* Heading highlight — a more dominant coffee/caramel that pops in dark mode */
+  /* Heading highlight - a more dominant coffee/caramel that pops in dark mode */
   --color-highlight: #cba56a;
 
   --color-border: rgba(233, 228, 207, 0.12);
@@ -23,7 +23,7 @@
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
-/* Light mode — "paper blueprint": warm cream paper, deep-green ink.
+/* Light mode - "paper blueprint": warm cream paper, deep-green ink.
    Overrides the same theme tokens, so every token-based utility adapts. */
 html.light {
   --color-background: #f2eee1;
@@ -37,7 +37,7 @@ html.light {
 
   --color-accent: #2c5e47;
   --color-mexo: #2f7d55;
-  /* Heading highlight — green on the cream "paper" light theme */
+  /* Heading highlight - green on the cream "paper" light theme */
   --color-highlight: #2f7d55;
 
   --color-border: rgba(18, 42, 32, 0.14);
@@ -63,7 +63,7 @@ html.light {
 
   body {
     background-color: var(--color-background);
-    /* Blueprint engineering grid — fixed across the whole site */
+    /* Blueprint engineering grid - fixed across the whole site */
     background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -123,6 +123,15 @@ html.light {
     background-size: 32px 32px;
   }
 
+  /* Swipeable strips on mobile: scrollable but with no visible scrollbar. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   .radial-fade {
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
@@ -173,7 +182,7 @@ html.light {
 }
 .animate-marquee {
   /* !important so the global reduced-motion reset below can't freeze the
-     product showcase — this is an intentional, continuous auto-scroll. */
+     product showcase - this is an intentional, continuous auto-scroll. */
   animation: marquee 40s linear infinite !important;
   will-change: transform;
 }

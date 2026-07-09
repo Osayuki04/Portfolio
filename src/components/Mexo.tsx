@@ -9,6 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
+import { ScrollRow, scrollItem } from "@/components/ui/ScrollRow";
 import { StatusPill } from "@/components/ui/Pill";
 import { Counter } from "@/components/mexo/Counter";
 import { mexo } from "@/lib/data";
@@ -20,7 +21,7 @@ export function Mexo() {
       className="relative scroll-mt-24 overflow-hidden border-y border-border bg-surface/30 py-24 sm:py-28 lg:py-32"
     >
       <div className="mx-auto w-full max-w-6xl container-px">
-        {/* Header — case study cover */}
+        {/* Header - case study cover */}
         <Reveal className="flex flex-col items-start gap-5">
           <div className="flex w-full flex-wrap items-center justify-between gap-3">
             <span className="label-tech text-faint">{"// 03 · case study"}</span>
@@ -140,17 +141,17 @@ export function Mexo() {
         {/* Roadmap */}
         <Reveal className="mt-6 rounded-lg border border-border bg-card/40 p-7">
           <p className="label-tech text-faint">Roadmap</p>
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ScrollRow as="ul" className="mt-5">
             {mexo.roadmap.map((item) => (
               <li
                 key={item}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted"
+                className={`${scrollItem} inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted`}
               >
                 <span className="h-1 w-1 rounded-full border border-faint" />
                 {item}
               </li>
             ))}
-          </ul>
+          </ScrollRow>
         </Reveal>
 
         {/* CTAs */}

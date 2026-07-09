@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight, Eye, Play } from "lucide-react";
 import { PlatformBadge, platformMeta } from "@/components/content/PlatformBadge";
+import { EmbedFrame } from "@/components/content/EmbedFrame";
 import { formatDate, formatViews, type Content } from "@/lib/content";
 import { getEmbed } from "@/lib/embeds";
 
@@ -49,33 +50,12 @@ export function ContentCard({ item, featured = false }: { item: Content; feature
 function EmbedCard({ item, embed }: { item: Content; embed: NonNullable<ReturnType<typeof getEmbed>> }) {
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card/40 transition-colors duration-300 hover:border-accent/40">
-      {/* live embed */}
+      {/* embed: only loads once the user taps it (see EmbedFrame) */}
       <div className="relative w-full overflow-hidden border-b border-border bg-background">
         <span className="pointer-events-none absolute left-3 top-3 z-10">
           <PlatformBadge platform={item.platform} />
         </span>
-        {embed.height === "video" ? (
-          <div className="aspect-video w-full">
-            <iframe
-              src={embed.src}
-              title={item.title}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          </div>
-        ) : (
-          <iframe
-            src={embed.src}
-            title={item.title}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-            className="block w-full"
-            style={{ height: embed.height }}
-          />
-        )}
+        <EmbedFrame item={item} src={embed.src} height={embed.height} />
       </div>
 
       <CardBody item={item} />
@@ -134,10 +114,13 @@ function CardBody({ item }: { item: Content }) {
 }
 
 function Thumb({ item }: { item: Content }) {
-  if (item.featuredImage) {
+  // Only locally-hosted posters: imported CDN thumbnails are not allowlisted for
+  // next/image (and are signed URLs that expire), so they'd crash the render.
+  const poster = item.featuredImage?.startsWith("/") ? item.featuredImage : null;
+  if (poster) {
     return (
       <Image
-        src={item.featuredImage}
+        src={poster}
         alt={item.title}
         fill
         sizes="(max-width: 768px) 100vw, 33vw"

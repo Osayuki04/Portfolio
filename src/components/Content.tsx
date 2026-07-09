@@ -1,57 +1,30 @@
 import Link from "next/link";
-import { ArrowRight, Video, FileText, Sparkles, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
-import { ContentCard } from "@/components/content/ContentCard";
+import { ContentCarousel } from "@/components/content/ContentCarousel";
 import { fetchAllContent } from "@/lib/contentApi";
 import { getFeatured, getVideos, getArticles, getInsights, type Content as ContentItem } from "@/lib/content";
 
 export async function Content() {
   const all = await fetchAllContent();
-  const featured = getFeatured(all).slice(0, 3);
-  const videos = getVideos(all).slice(0, 3);
-  const articles = getArticles(all).slice(0, 3);
-  const insights = getInsights(all).slice(0, 3);
+  const featured = getFeatured(all).slice(0, 8);
+  const videos = getVideos(all).slice(0, 8);
+  const articles = getArticles(all).slice(0, 8);
+  const insights = getInsights(all).slice(0, 8);
 
   return (
     <Section id="content">
       <SectionHeading
         eyebrow="Building in Public"
         title="Beyond the code"
-        description="Content from across platforms — development, building products, the founder journey, and lessons learned in the open."
+        description="Videos, threads, and write-ups about what I'm building and what I'm learning."
       />
 
-      {featured.length > 0 && (
-        <Group icon={Star} label="Featured Content" delay={0.05}>
-          {featured.map((item) => (
-            <ContentCard key={item.id} item={item} />
-          ))}
-        </Group>
-      )}
-
-      {videos.length > 0 && (
-        <Group icon={Video} label="Latest Videos" delay={0.05}>
-          {videos.map((item) => (
-            <ContentCard key={item.id} item={item} />
-          ))}
-        </Group>
-      )}
-
-      {articles.length > 0 && (
-        <Group icon={FileText} label="Latest Articles" delay={0.05}>
-          {articles.map((item) => (
-            <ContentCard key={item.id} item={item} />
-          ))}
-        </Group>
-      )}
-
-      {insights.length > 0 && (
-        <Group icon={Sparkles} label="Recent Insights" delay={0.05}>
-          {insights.map((item) => (
-            <ContentCard key={item.id} item={item} />
-          ))}
-        </Group>
-      )}
+      <ContentCarousel items={featured} label="Featured Content" icon="star" />
+      <ContentCarousel items={videos} label="Latest Videos" icon="video" />
+      <ContentCarousel items={articles} label="Latest Articles" icon="article" />
+      <ContentCarousel items={insights} label="Recent Insights" icon="insight" />
 
       <Reveal className="mt-12 flex justify-center">
         <Link
@@ -63,28 +36,6 @@ export async function Content() {
         </Link>
       </Reveal>
     </Section>
-  );
-}
-
-function Group({
-  icon: Icon,
-  label,
-  delay,
-  children,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  delay: number;
-  children: React.ReactNode;
-}) {
-  return (
-    <Reveal delay={delay} className="mt-12">
-      <div className="flex items-center gap-2 label-tech text-faint">
-        <Icon className="h-4 w-4" />
-        {label}
-      </div>
-      <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
-    </Reveal>
   );
 }
 

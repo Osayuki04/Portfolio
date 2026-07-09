@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Self-contained server build (.next/standalone/server.js) — required to run
+  // Self-contained server build (.next/standalone/server.js) - required to run
   // Next.js under Hostinger's Node.js App (Passenger) manager. Harmless on Vercel.
   output: "standalone",
   // Serve modern, smaller image formats for better LCP / Core Web Vitals (SEO).

@@ -1,4 +1,4 @@
--- Building in Public — content schema
+-- Building in Public - content schema
 -- MySQL 5.7+ / 8.0
 --
 -- Usage:
@@ -50,17 +50,17 @@ INSERT INTO content
   (title, slug, excerpt, description, featured_image, platform, content_type, category, source_url, embed_url, published_date, views, featured)
 VALUES
   ('LinkedIn Launches a Dedicated Video Feed', 'linkedin-launches-video-feed',
-   'LinkedIn just launched a dedicated video feed — here''s why it signals where social media is heading, and the opportunity it opens for developers and founders.',
-   'LinkedIn just launched a dedicated video feed, and it says a lot about where social media is heading. People don''t just want to read long posts anymore — they want quick, valuable content they can consume in seconds. For developers, founders, and creators, this is a chance to build an audience on a platform traditionally dominated by text.',
+   'LinkedIn just launched a dedicated video feed - here''s why it signals where social media is heading, and the opportunity it opens for developers and founders.',
+   'LinkedIn just launched a dedicated video feed, and it says a lot about where social media is heading. People don''t just want to read long posts anymore - they want quick, valuable content they can consume in seconds. For developers, founders, and creators, this is a chance to build an audience on a platform traditionally dominated by text.',
    NULL, 'tiktok', 'video', 'Content Creation', 'https://www.tiktok.com/@yuki_dev04/video/7653418372796812566', NULL, '2026-06-20', 0, 1),
 
   ('What I Love Most About Tech', 'what-i-love-most-about-tech',
    'Nothing in tech is ever truly finished. The next big feature might start with a simple question: "What if we did it this way instead?"',
-   'The thing I love most about tech is that nothing is ever truly finished. The next big feature might not come from a research lab or an AI model — it might come from someone asking a simple question: "What if we did it this way instead?" That''s how products evolve.',
+   'The thing I love most about tech is that nothing is ever truly finished. The next big feature might not come from a research lab or an AI model - it might come from someone asking a simple question: "What if we did it this way instead?" That''s how products evolve.',
    NULL, 'tiktok', 'video', 'Development', 'https://www.tiktok.com/@yuki_dev04/video/7652330434168098070', NULL, '2026-06-17', 0, 0),
 
   ('Building Search Autocomplete', 'building-search-autocomplete',
-   'Autocomplete seems simple until you see what''s behind it — debouncing, caching popular searches, and learning from user behavior.',
+   'Autocomplete seems simple until you see what''s behind it - debouncing, caching popular searches, and learning from user behavior.',
    'Autocomplete seems simple until you realize how much is happening behind the scenes. From debouncing requests to caching popular searches and learning from user behavior, these are the techniques that make search feel instant. Small details like this separate basic apps from great ones.',
    NULL, 'tiktok', 'video', 'Tutorials', 'https://www.tiktok.com/@yuki_dev04/video/7652093930527411478', NULL, '2026-06-16', 0, 0),
 

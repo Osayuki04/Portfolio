@@ -17,21 +17,20 @@ export function Contact() {
   return (
     <Section id="contact">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
-        <Reveal>
-          <div className="flex items-center gap-2">
+        <Reveal className="text-center sm:text-left">
+          <div className="flex items-center justify-center gap-2 sm:justify-start">
             <span className="h-px w-8 bg-accent/60" />
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
               Contact
             </span>
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+          <h2 className="mt-4 font-display text-2xl font-bold leading-[1.15] sm:text-4xl sm:leading-tight lg:text-[2.75rem] lg:leading-[1.1]">
             Let&apos;s build something <span className="text-highlight">together</span>
           </h2>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
-            Open to opportunities, collaborations, and conversations about products, football, and
-            building in public.
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted sm:mx-0 sm:text-lg">
+            Open to work, collaborations, and good conversations about products or football.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 sm:justify-start">
             <a
               href={`mailto:${profile.email}`}
               className="inline-flex items-center gap-2 rounded-md border border-accent bg-accent px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-content hover:border-content"

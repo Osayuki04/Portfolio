@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 type Variant = "primary" | "secondary" | "ghost";
 
 const styles: Record<Variant, string> = {
-  // Solid cream control — the single key action
+  // Solid cream control - the single key action
   primary:
     "border border-accent bg-accent text-background hover:bg-content hover:border-content font-semibold",
   // Outlined technical control

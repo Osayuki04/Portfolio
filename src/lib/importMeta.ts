@@ -43,10 +43,11 @@ function guessCategory(text: string): Content["category"] {
   return "Development";
 }
 
-/** Strip hashtags / collapse whitespace. */
+/** Strip hashtags, normalize long dashes to hyphens, collapse whitespace. */
 function cleanCaption(raw: string): string {
   return raw
     .replace(/#[\p{L}\p{N}_]+/gu, "")
+    .replace(/[‒–—―]/g, "-")
     .replace(/\s+/g, " ")
     .trim();
 }

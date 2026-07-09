@@ -26,7 +26,7 @@ function readUrl(path: string, query?: Record<string, string | number | undefine
   return url;
 }
 
-/** Public read — live data when configured, otherwise the sample set. */
+/** Public read - live data when configured, otherwise the sample set. */
 export async function fetchAllContent(opts?: { fresh?: boolean }): Promise<Content[]> {
   if (!READ_BASE) return sampleContent;
   try {
@@ -52,7 +52,7 @@ async function adminFetch<T>(path: string, init: { method: string; body?: unknow
     headers: init.body !== undefined ? { "Content-Type": "application/json" } : undefined,
     body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
   });
-  if (res.status === 401) throw new Error("Your session expired — please log in again.");
+  if (res.status === 401) throw new Error("Your session expired - please log in again.");
   if (!res.ok) {
     const json = await res.json().catch(() => ({}));
     throw new Error(json.error ?? `Request failed (${res.status})`);

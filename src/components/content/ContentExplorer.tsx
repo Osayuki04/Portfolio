@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search, LayoutGrid } from "lucide-react";
 import { ContentCard } from "@/components/content/ContentCard";
+import { ScrollRow, scrollItem } from "@/components/ui/ScrollRow";
 import { platformMeta } from "@/components/content/PlatformBadge";
 import {
   CATEGORIES,
@@ -39,13 +40,13 @@ export function ContentExplorer({ all }: { all: Content[] }) {
         <LayoutGrid className="h-4 w-4" />
         Categories
       </div>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ScrollRow className="mt-4">
         {["All", ...CATEGORIES].map((c) => (
           <button
             key={c}
             type="button"
             onClick={() => setCategory(c)}
-            className={`rounded-full border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors ${
+            className={`${scrollItem} whitespace-nowrap rounded-full border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors ${
               category === c
                 ? "border-accent bg-accent/10 text-accent"
                 : "border-border text-muted hover:border-accent/40 hover:text-content"
@@ -54,7 +55,7 @@ export function ContentExplorer({ all }: { all: Content[] }) {
             {c}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* Filters */}
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">

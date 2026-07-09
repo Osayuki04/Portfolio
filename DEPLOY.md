@@ -2,11 +2,11 @@
 
 This repo has **two parts**:
 
-1. **Next.js app** (the site) — a mostly-static Next.js 16 app. The public pages
+1. **Next.js app** (the site) - a mostly-static Next.js 16 app. The public pages
    (`/`, `/content`, `/projects/*`, sitemap, OG images) are static/SSG, but the
    **admin** (`/admin/content` + `/api/admin/*`) is server-rendered and needs a
    **Node.js runtime** (`next start`).
-2. **PHP + MySQL backend** (`backend/`) — the content API. This is what Hostinger
+2. **PHP + MySQL backend** (`backend/`) - the content API. This is what Hostinger
    shared hosting runs natively.
 
 > Because the admin needs Node.js, you can't run the whole app on plain PHP
@@ -23,12 +23,12 @@ git branch -M main
 git push -u origin main
 ```
 
-Secrets are safe: `.env.local` / `.env.production` are gitignored — only the
+Secrets are safe: `.env.local` / `.env.production` are gitignored - only the
 `*.example` templates are committed.
 
 ---
 
-## 2a. Hosting option A — Vercel (site) + Hostinger (PHP/MySQL)  ⭐ recommended
+## 2a. Hosting option A - Vercel (site) + Hostinger (PHP/MySQL)  ⭐ recommended
 
 Best fit for Next.js: zero-config, global CDN, great Core Web Vitals.
 
@@ -42,7 +42,7 @@ Best fit for Next.js: zero-config, global CDN, great Core Web Vitals.
 
 **PHP API → Hostinger** (see step 3 below).
 
-## 2b. Hosting option B — everything on Hostinger
+## 2b. Hosting option B - everything on Hostinger
 
 Requires a plan with **Node.js support** (Business / Cloud / VPS).
 
@@ -60,7 +60,7 @@ Requires a plan with **Node.js support** (Business / Cloud / VPS).
    `backend/schema.sql` via phpMyAdmin (creates tables + seed content).
 2. **Upload** the `backend/` folder into `public_html/backend` (or a subdomain
    like `api.osayukiobazee.xyz`).
-3. **Config** — set these as env vars (hPanel → PHP env / or `SetEnv` in
+3. **Config** - set these as env vars (hPanel → PHP env / or `SetEnv` in
    `backend/.htaccess`):
    - `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`
    - `CORS_ORIGIN=https://osayukiobazee.xyz`
@@ -75,4 +75,4 @@ Requires a plan with **Node.js support** (Business / Cloud / VPS).
 - Set a strong `ADMIN_PASSWORD` and a fresh `AUTH_SECRET` (`openssl rand -hex 32`).
 - Google Search Console: add the property and submit
   `https://osayukiobazee.xyz/sitemap.xml`.
-- Confirm HTTPS everywhere (no mixed content — the PHP API must be HTTPS).
+- Confirm HTTPS everywhere (no mixed content - the PHP API must be HTTPS).

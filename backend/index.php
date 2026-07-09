@@ -1,5 +1,5 @@
 <?php
-// Building in Public — PHP REST API (front controller).
+// Building in Public - PHP REST API (front controller).
 //
 // Routes (prefix with your deploy path, e.g. /api):
 //   GET    /content                 list (filters: platform, category, content_type, featured, search, limit, offset, sort)

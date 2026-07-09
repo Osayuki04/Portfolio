@@ -49,7 +49,7 @@ export function AdminLogin() {
         </div>
         <h1 className="heading-tech mt-5 text-2xl">Private area</h1>
         <p className="mt-2 text-sm leading-relaxed text-muted">
-          Sorry — this feature is only for Osayuki and not for the public. Please log in to continue.
+          Sorry - this feature is only for Osayuki and not for the public. Please log in to continue.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3">

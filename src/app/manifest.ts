@@ -3,7 +3,7 @@ import { siteName } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteName} — Full Stack Developer`,
+    name: `${siteName} - Full Stack Developer`,
     short_name: siteName,
     description:
       "Full Stack Developer and Founder of MEXO. Building products end to end and sharing the journey publicly.",

@@ -16,7 +16,7 @@ export function TechStack() {
       <SectionHeading
         eyebrow="Tech Stack"
         title="Tools I build with"
-        description="A pragmatic, full-stack toolkit chosen for shipping fast and scaling well."
+        description="The tools I actually reach for when I need to ship something."
       />
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

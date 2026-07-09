@@ -1,4 +1,4 @@
-# Dave (Yuki) — Portfolio
+# Dave (Yuki) - Portfolio
 
 Premium portfolio for **Dave (Yuki)**, Full Stack Developer & Founder of **MEXO**. Built to feel like a founder's product landing page, not a resume.
 
@@ -31,7 +31,7 @@ public/resume.pdf placeholder resume (replace with the real one)
 ## Editing content
 
 Almost everything (copy, projects, experience, metrics, social links) lives in
-[`src/lib/data.ts`](src/lib/data.ts). Update there — components read from it.
+[`src/lib/data.ts`](src/lib/data.ts). Update there - components read from it.
 
 ## Before going live
 

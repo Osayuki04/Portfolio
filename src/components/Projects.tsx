@@ -7,12 +7,13 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { StatusPill } from "@/components/ui/Pill";
 import { ProjectImage } from "@/components/projects/ProjectImage";
+import { MarqueeRow } from "@/components/ui/MarqueeRow";
 import { Lightbox } from "@/components/projects/Lightbox";
 import { projects } from "@/lib/projects";
 
 const lightboxImages = projects
   .filter((p) => p.image)
-  .map((p) => ({ src: p.image as string, label: `${p.name} — ${p.subtitle}` }));
+  .map((p) => ({ src: p.image as string, label: `${p.name} - ${p.subtitle}` }));
 
 export function Projects() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -22,7 +23,7 @@ export function Projects() {
       <SectionHeading
         eyebrow="Projects"
         title="Products I've built"
-        description="A mix of platforms, tools, and games — each shipped end to end. Open a case study to see how it was built, or maximize a screenshot to take a closer look."
+        description="Platforms, tools, and a game. All shipped end to end. Open a case study to see how each one was built."
       />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -30,7 +31,7 @@ export function Projects() {
           const isGame = project.liveLabel === "Play Game";
           const imgIndex = lightboxImages.findIndex((im) => im.src === project.image);
           return (
-            <Reveal key={project.slug} delay={i * 0.06}>
+            <Reveal key={project.slug} delay={i * 0.06} className="min-w-0">
               <article
                 className={`group flex h-full flex-col overflow-hidden rounded-2xl border transition-colors duration-300 ${
                   project.flagship
@@ -38,7 +39,7 @@ export function Projects() {
                     : "border-border bg-card/40 hover:border-accent/40"
                 }`}
               >
-                {/* preview image — click to maximize */}
+                {/* preview image - click to maximize */}
                 <button
                   type="button"
                   onClick={() => imgIndex >= 0 && setOpenIndex(imgIndex)}
@@ -70,8 +71,8 @@ export function Projects() {
                 </button>
 
                 {/* info */}
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+                <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent sm:tracking-[0.16em]">
                     {project.category}
                   </p>
                   <h3 className="mt-2 font-display text-xl font-bold text-content sm:text-2xl">
@@ -81,25 +82,20 @@ export function Projects() {
                     {project.summary}
                   </p>
 
-                  <ul className="mt-5 flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <li
-                        key={t}
-                        className="rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-muted"
-                      >
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
+                  <MarqueeRow
+                    items={project.tech}
+                    className="mt-5"
+                    pillClass="rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-muted"
+                  />
 
-                  <div className="mt-6 flex flex-wrap gap-3 border-t border-border pt-5">
+                  <div className="mt-6 flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:flex-wrap">
                     {project.liveUrl === "#" ? (
                       <button
                         type="button"
                         disabled
                         aria-disabled="true"
                         title="Coming soon"
-                        className="inline-flex cursor-not-allowed items-center gap-2 rounded-md border border-mexo/30 bg-mexo/10 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-mexo/50"
+                        className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-md border border-mexo/30 bg-mexo/10 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-mexo/50 sm:w-auto"
                       >
                         {isGame ? <Gamepad2 className="h-4 w-4" /> : <ArrowUpRight className="h-4 w-4" />}
                         {project.liveLabel}
@@ -109,7 +105,7 @@ export function Projects() {
                         href={project.liveUrl}
                         target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-md border border-accent bg-accent px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-background transition-colors hover:bg-content hover:border-content"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-accent bg-accent px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-background transition-colors hover:bg-content hover:border-content sm:w-auto"
                       >
                         {isGame ? <Gamepad2 className="h-4 w-4" /> : <ArrowUpRight className="h-4 w-4" />}
                         {project.liveLabel}
@@ -117,7 +113,7 @@ export function Projects() {
                     )}
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-content transition-colors hover:border-accent/50 hover:bg-accent/5"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-content transition-colors hover:border-accent/50 hover:bg-accent/5 sm:w-auto"
                     >
                       <BookOpen className="h-4 w-4" />
                       Read Case Study

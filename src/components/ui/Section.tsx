@@ -46,13 +46,15 @@ export function SectionHeading({
   index?: string;
   align?: "left" | "center";
 }) {
+  // Headings wrap on phones, so centre them there and go left-aligned from `sm`.
+  const centred = align === "center";
   return (
     <Reveal
-      className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""}`}
+      className={`max-w-2xl ${centred ? "mx-auto text-center" : "text-center sm:text-left"}`}
     >
       <div
         className={`flex items-center gap-3 ${
-          align === "center" ? "justify-center" : ""
+          centred ? "justify-center" : "justify-center sm:justify-start"
         }`}
       >
         {index && (
@@ -63,7 +65,7 @@ export function SectionHeading({
         <span className="h-px w-6 bg-accent/40" />
         <span className="label-tech text-accent">{eyebrow}</span>
       </div>
-      <h2 className="heading-tech mt-5 text-3xl leading-[1.08] sm:text-4xl lg:text-[2.6rem]">
+      <h2 className="heading-tech mt-5 text-2xl leading-[1.15] sm:text-4xl sm:leading-[1.08] lg:text-[2.6rem]">
         {highlightLastWord(title)}
       </h2>
       {description && (

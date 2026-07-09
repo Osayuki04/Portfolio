@@ -36,7 +36,7 @@ yarn-error.log*
 !.env.example
 !.env.production.example
 
-# backend secret overrides (12-factor style — real credentials live here)
+# backend secret overrides (12-factor style - real credentials live here)
 *.local.php
 
 # vercel

@@ -65,7 +65,7 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       overview:
-        "A football platform designed to connect fans with the game — news, transfers, competitions, teams, and the communities that bring them together.",
+        "A football platform designed to connect fans with the game - news, transfers, competitions, teams, and the communities that bring them together.",
       problem:
         "Football coverage is fragmented across dozens of sources. Fans jump between sites for news, transfers, scores, and team context with no single structured place that ties everything together.",
       solution:
@@ -94,7 +94,7 @@ export const projects: Project[] = [
         {
           title: "Source normalization",
           detail:
-            "Articles arrive in inconsistent formats from many providers — a normalization layer cleans, dedupes, and standardizes every item before it reaches the database.",
+            "Articles arrive in inconsistent formats from many providers - a normalization layer cleans, dedupes, and standardizes every item before it reaches the database.",
         },
         {
           title: "Automated categorization",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
         },
       ],
       impact:
-        "MEXO turns fragmented football coverage into one structured, searchable platform — processing thousands of articles across hundreds of teams and dozens of competitions, all from a unified content pipeline.",
+        "MEXO turns fragmented football coverage into one structured, searchable platform - processing thousands of articles across hundreds of teams and dozens of competitions, all from a unified content pipeline.",
       roadmap: ["User Accounts", "Communities", "Predictions", "Match Tracking", "Personalized Feeds"],
       gallery: [
         { label: "Homepage", src: "/mexo1.jpeg" },
@@ -129,9 +129,8 @@ export const projects: Project[] = [
     name: "Yibera",
     category: "Hospital Management System",
     subtitle: "Hospital Management System",
-    status: "Live",
     summary:
-      "A web-based hospital management system — a public marketing site plus three role-based portals (patients, staff, admins) behind a security-first PHP auth layer. Patients self-register, request and track appointments, and follow their care; admins manage patients, staff, pharmacy inventory, and reports.",
+      "A web-based hospital management system - a public marketing site plus three role-based portals (patients, staff, admins) behind a security-first PHP auth layer. Patients self-register, request and track appointments, and follow their care; admins manage patients, staff, pharmacy inventory, and reports.",
     tech: ["PHP 8", "Custom MVC", "MySQL / MariaDB", "Tailwind CSS", "Vanilla JS", "Apache"],
     image: "/yibera/mainyiberaimage.png",
     liveUrl: "https://yibera.com",
@@ -142,15 +141,15 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       overview:
-        "Yibera is a web-based hospital management system — a public marketing site plus three role-based portals (patients, staff, admins) behind a security-first authentication layer. It unifies patient intake, appointments, prescriptions, lab results, pharmacy inventory, and billing into one operational system.",
+        "Yibera is a web-based hospital management system - a public marketing site plus three role-based portals (patients, staff, admins) behind a security-first authentication layer. It unifies patient intake, appointments, prescriptions, lab results, pharmacy inventory, and billing into one operational system.",
       problem:
-        "Hospitals juggle disconnected workflows — patient intake, appointment requests, staff records, pharmacy stock, lab results, and billing — often spread across paper, spreadsheets, and siloed tools. Patients have no single place to register, book, and follow their care, and staff and admins have no unified operational view.",
+        "Hospitals juggle disconnected workflows - patient intake, appointment requests, staff records, pharmacy stock, lab results, and billing - often spread across paper, spreadsheets, and siloed tools. Patients have no single place to register, book, and follow their care, and staff and admins have no unified operational view.",
       solution:
-        "A full HMS with three role-based portals behind a security-first auth layer. Patients self-register, book and manage appointments, and view prescriptions, lab results, and invoices. Staff (created by admins) sign in to a clinical/operational view, while admins manage patients, staff, and pharmacy inventory and see analytics. Booking is currently request-and-confirm — an admin confirms each appointment — not real-time slot selection.",
+        "A full HMS with three role-based portals behind a security-first auth layer. Patients self-register, book and manage appointments, and view prescriptions, lab results, and invoices. Staff (created by admins) sign in to a clinical/operational view, while admins manage patients, staff, and pharmacy inventory and see analytics. Booking is currently request-and-confirm - an admin confirms each appointment - not real-time slot selection.",
       systemDesign: [
         { label: "Frontend", value: "Server-rendered PHP views + Tailwind (compiled, purged, minified); progressive enhancement with vanilla JS, Chart.js, AOS, Swiper. No SPA." },
-        { label: "Backend", value: "PHP 8 custom MVC — no framework or Composer. Front-controller + router with thin models over mysqli using prepared statements." },
-        { label: "Database", value: "MySQL / MariaDB. Schema self-provisions on first request — idempotent CREATE TABLE IF NOT EXISTS plus additive column migrations." },
+        { label: "Backend", value: "PHP 8 custom MVC - no framework or Composer. Front-controller + router with thin models over mysqli using prepared statements." },
+        { label: "Database", value: "MySQL / MariaDB. Schema self-provisions on first request - idempotent CREATE TABLE IF NOT EXISTS plus additive column migrations." },
         { label: "Notifications", value: "Dependency-free SMTP client (raw sockets, SSL/STARTTLS, AUTH LOGIN) for OTP/verification, with mail() + file-log fallback." },
         { label: "Infra", value: "Apache on shared hosting; .htaccess for forced HTTPS, asset caching, gzip, and security headers; gitignored env-style config for secrets." },
       ],
@@ -159,20 +158,20 @@ export const projects: Project[] = [
         { step: "01", title: "Register / Activate", detail: "Self-signup, or email-OTP activate/reset for patients booked by an admin." },
         { step: "02", title: "Onboarding", detail: "Optional, skippable profile completion." },
         { step: "03", title: "Sign In", detail: "Password (bcrypt cost 12) + optional email-OTP 2FA, protected by brute-force lockout." },
-        { step: "04", title: "Book", detail: "Choose department + preferred date/time — appointment is created as pending." },
+        { step: "04", title: "Book", detail: "Choose department + preferred date/time - appointment is created as pending." },
         { step: "05", title: "Confirm", detail: "Admin/staff move it to confirmed or completed; the patient sees the status." },
         { step: "06", title: "Follow Care", detail: "View prescriptions, lab results, and invoices; pay invoices (simulated)." },
       ],
       database: [
-        "patient — demographics, insurance, portal auth",
-        "staff — provider profile, department, portal auth",
-        "admin_users — admin / super-admin accounts",
-        "appointment — patient, department, date/time, status",
-        "prescription — EMR records per patient",
-        "lab_report — EMR lab results per patient",
-        "invoice — billing: amount, status, due/paid",
-        "medication — pharmacy inventory",
-        "login_attempts — brute-force throttle ledger",
+        "patient - demographics, insurance, portal auth",
+        "staff - provider profile, department, portal auth",
+        "admin_users - admin / super-admin accounts",
+        "appointment - patient, department, date/time, status",
+        "prescription - EMR records per patient",
+        "lab_report - EMR lab results per patient",
+        "invoice - billing: amount, status, due/paid",
+        "medication - pharmacy inventory",
+        "login_attempts - brute-force throttle ledger",
       ],
       metrics: [
         { value: "3", label: "Role-Based Portals" },
@@ -184,7 +183,7 @@ export const projects: Project[] = [
         {
           title: "Multi-actor auth with isolated guards",
           detail:
-            "Three identity types (admin / patient / staff) live in separate tables and session namespaces via three guard classes, so a valid patient session can't traverse into staff or admin areas. More code than one users table with RBAC — but strong blast-radius isolation.",
+            "Three identity types (admin / patient / staff) live in separate tables and session namespaces via three guard classes, so a valid patient session can't traverse into staff or admin areas. More code than one users table with RBAC - but strong blast-radius isolation.",
         },
         {
           title: "Security as defense-in-depth",
@@ -194,7 +193,7 @@ export const projects: Project[] = [
         {
           title: "Schema migrate-on-boot",
           detail:
-            "No shell/CLI on shared hosting, so Database::migrate() runs idempotently on the first request of a session to self-heal the schema on deploy. It isn't versioned — at scale I'd move to a real migration runner in CI/CD.",
+            "No shell/CLI on shared hosting, so Database::migrate() runs idempotently on the first request of a session to self-heal the schema on deploy. It isn't versioned - at scale I'd move to a real migration runner in CI/CD.",
         },
         {
           title: "Dependency-free transactional email",
@@ -204,7 +203,7 @@ export const projects: Project[] = [
         {
           title: "Honest data-model tension",
           detail:
-            "Public booking still writes to patient.Status while the portal added an appointment table for multiple bookings — a real dual-source-of-truth smell (admin stats still read patient.Status). The fix is to move all scheduling onto appointment and keep patient as pure identity.",
+            "Public booking still writes to patient.Status while the portal added an appointment table for multiple bookings - a real dual-source-of-truth smell (admin stats still read patient.Status). The fix is to move all scheduling onto appointment and keep patient as pure identity.",
         },
         {
           title: "Where it breaks at scale",
@@ -213,7 +212,7 @@ export const projects: Project[] = [
         },
       ],
       impact:
-        "Yibera is a working full hospital management system — a public site plus patient, staff, and admin portals over a 9-table MySQL schema, with multi-actor authentication, defense-in-depth security, and self-provisioning migrations — built on zero-dependency PHP 8 so it deploys on plain shared hosting.",
+        "Yibera is a working full hospital management system - a public site plus patient, staff, and admin portals over a 9-table MySQL schema, with multi-actor authentication, defense-in-depth security, and self-provisioning migrations - built on zero-dependency PHP 8 so it deploys on plain shared hosting.",
       roadmap: [
         "Real availability & slot engine",
         "Provider discovery & search",
@@ -288,7 +287,7 @@ export const projects: Project[] = [
         {
           title: "Performance with rich media",
           detail:
-            "Project showcases are image-heavy — loading and responsiveness were optimized to stay fast across every device.",
+            "Project showcases are image-heavy - loading and responsiveness were optimized to stay fast across every device.",
         },
         {
           title: "Reusable design system",
@@ -369,7 +368,7 @@ export const projects: Project[] = [
         },
       ],
       impact:
-        "EcoCycle makes recycling education hands-on — players learn correct waste sorting through play, reinforcing sustainable habits in a fun, rewarding loop.",
+        "EcoCycle makes recycling education hands-on - players learn correct waste sorting through play, reinforcing sustainable habits in a fun, rewarding loop.",
       roadmap: ["Mobile Release", "Leaderboards", "New Maps", "Multiplayer Challenges", "Environmental Events"],
       gallery: [
         { label: "Main Menu", src: "/game1.jpeg" },

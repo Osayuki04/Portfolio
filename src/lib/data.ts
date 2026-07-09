@@ -50,15 +50,15 @@ export const aboutStats = [
 
 export const mexo = {
   overview:
-    "A football platform designed to connect fans with the game — news, transfers, competitions, teams, and the communities that bring them together.",
+    "A football platform designed to connect fans with the game - news, transfers, competitions, teams, and the communities that bring them together.",
   problem:
-    "Football coverage is fragmented across dozens of sources. Fans jump between sites for news, transfers, scores, and team context — with no single, structured place that ties it all together.",
+    "Football coverage is fragmented across dozens of sources. Fans jump between sites for news, transfers, scores, and team context - with no single, structured place that ties it all together.",
   solution:
-    "MEXO aggregates and structures football content into a single platform — normalizing news from many sources, mapping it to teams and competitions, and making it searchable and browsable in one place.",
+    "MEXO aggregates and structures football content into a single platform - normalizing news from many sources, mapping it to teams and competitions, and making it searchable and browsable in one place.",
   systemDesign: [
-    { layer: "Client", detail: "Next.js + Tailwind — fast, SEO-friendly pages" },
+    { layer: "Client", detail: "Next.js + Tailwind - fast, SEO-friendly pages" },
     { layer: "API", detail: "PHP / REST endpoints serving structured data" },
-    { layer: "Database", detail: "MySQL — relational football data model" },
+    { layer: "Database", detail: "MySQL - relational football data model" },
     { layer: "External Sources", detail: "News feeds & football data providers" },
   ],
   pipeline: [
@@ -248,7 +248,7 @@ export const content = [
   {
     title: "30 Days Of PHP",
     description:
-      "A public series documenting daily PHP builds — from fundamentals to shipping real backend features.",
+      "A public series documenting daily PHP builds - from fundamentals to shipping real backend features.",
     tag: "Series",
   },
   {

@@ -1,6 +1,5 @@
-import { Coffee, Zap } from "lucide-react";
+import { Coffee } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { StatusPill } from "@/components/ui/Pill";
 import { Counter } from "@/components/mexo/Counter";
 import { mexo } from "@/lib/data";
 
@@ -16,15 +15,11 @@ export function Support() {
       <div className="mx-auto w-full max-w-6xl container-px">
         <div className="corner-ticks grid gap-8 rounded-lg border border-border bg-card/40 p-6 sm:p-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-12 lg:p-12">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-mexo/40 bg-mexo/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-mexo">
-              <Zap className="h-3.5 w-3.5" />
-              Building In Public
-            </div>
-            <h2 className="heading-tech mt-5 text-3xl sm:text-4xl">
+            <h2 className="heading-tech text-2xl sm:text-4xl">
               Support My <span className="text-highlight">Journey</span> <span className="align-middle">☕</span>
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-              I&apos;m building MEXO in public and sharing the journey. If you like what I do, consider supporting me to fuel my next idea.
+              I build in public and share what I learn along the way. If any of it has been useful, a coffee helps fuel the next one.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -45,20 +40,26 @@ export function Support() {
           {/* Support card */}
           <Reveal delay={0.08}>
             <div className="rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-muted">Current Project</p>
+              {/* Stack on phones so "Current Project" never squeezes against the pill. */}
+              <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
+                  <p className="whitespace-nowrap text-xs uppercase tracking-[0.12em] text-muted sm:tracking-[0.16em]">
+                    Current Project
+                  </p>
                   <p className="mt-1 font-display text-xl font-bold text-content">MEXO</p>
                 </div>
-                <StatusPill label={mexo.status} />
               </div>
-              <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-border bg-border">
+              {/* Stacked rows on phones (3 columns squeezes these numbers), 3 up from sm. */}
+              <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
                 {supportMetrics.map((metric) => (
-                  <div key={metric.label} className="min-w-0 bg-card/70 p-2.5 text-center sm:p-4">
-                    <div className="font-display text-sm font-bold text-content sm:text-2xl">
+                  <div
+                    key={metric.label}
+                    className="flex min-w-0 items-baseline justify-between gap-3 bg-card/70 px-4 py-3 sm:block sm:p-4 sm:text-center"
+                  >
+                    <div className="shrink-0 font-display text-base font-bold text-content sm:text-xl">
                       <Counter value={metric.value} />
                     </div>
-                    <div className="mt-1 text-[10px] leading-tight text-muted sm:text-[11px]">
+                    <div className="min-w-0 text-right text-xs leading-tight text-muted sm:mt-1 sm:text-center sm:text-[11px]">
                       {metric.label}
                     </div>
                   </div>

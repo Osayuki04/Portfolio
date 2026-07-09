@@ -1,5 +1,5 @@
 // Centralized SEO config + structured-data (JSON-LD) builders.
-// Single source of truth for the production domain — used by metadata,
+// Single source of truth for the production domain - used by metadata,
 // robots, sitemap, manifest, and JSON-LD so they can never drift apart.
 
 import { profile } from "@/lib/data";

@@ -18,15 +18,15 @@ const inter = Inter({
   display: "swap",
 });
 
-const title = "Osayuki Obazee — Full Stack Developer & Founder of MEXO";
+const title = "Osayuki Obazee - Full Stack Developer & Founder of MEXO";
 const description =
-  "Osayuki Obazee (Yuki) — Full Stack Developer and Founder of MEXO. Building products end to end with Next.js, PHP, and MySQL, and sharing the journey publicly.";
+  "Osayuki Obazee (Yuki) - Full Stack Developer and Founder of MEXO. Building products end to end with Next.js, PHP, and MySQL, and sharing the journey publicly.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: "%s — Osayuki Obazee",
+    template: "%s - Osayuki Obazee",
   },
   description,
   applicationName: siteName,

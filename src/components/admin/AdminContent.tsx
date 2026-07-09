@@ -164,8 +164,8 @@ export function AdminContent({ username }: { username: string }) {
       setEditing({ ...emptyDraft, ...draft, title: draft.title ?? "" });
       flash(
         draft.metadataFound
-          ? "Metadata retrieved — review & save"
-          : "Limited metadata for this platform — review & complete"
+          ? "Metadata retrieved - review & save"
+          : "Limited metadata for this platform - review & complete"
       );
       setImportValue("");
     } catch (e) {
@@ -215,7 +215,7 @@ export function AdminContent({ username }: { username: string }) {
 
       {!live && (
         <p className="mt-5 rounded-md border border-border bg-surface/50 p-3 font-mono text-xs text-muted">
-          Preview mode — set <span className="text-accent">NEXT_PUBLIC_CONTENT_API_URL</span> to connect the PHP API.
+          Preview mode - set <span className="text-accent">NEXT_PUBLIC_CONTENT_API_URL</span> to connect the PHP API.
           Changes here are local only and won&apos;t persist.
         </p>
       )}

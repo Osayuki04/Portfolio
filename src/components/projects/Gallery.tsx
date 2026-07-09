@@ -140,7 +140,7 @@ export function Gallery({ items, name }: { items: GalleryItem[]; name: string })
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={items[open].src}
-                      alt={`${name} — ${items[open].label}`}
+                      alt={`${name} - ${items[open].label}`}
                       className="block h-auto w-full"
                     />
                   ) : (

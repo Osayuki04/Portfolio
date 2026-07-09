@@ -1,7 +1,7 @@
-# Building in Public — PHP API
+# Building in Public - PHP API
 
 PHP + MySQL REST API that powers the Building in Public content ecosystem.
-No frameworks, no scraping — only official oEmbed endpoints are used for import.
+No frameworks, no scraping - only official oEmbed endpoints are used for import.
 
 ## Setup
 
@@ -25,7 +25,7 @@ Base URL = wherever you deploy this folder (e.g. `https://api.example.com`).
 | GET | `/content/{id}` | Single |
 | PUT / PATCH | `/content/{id}` | Update (PATCH = partial) |
 | DELETE | `/content/{id}` | Delete |
-| POST | `/content/{id}/feature` | Set/toggle featured — body `{ "featured": true }` (omit to toggle) |
+| POST | `/content/{id}/feature` | Set/toggle featured - body `{ "featured": true }` (omit to toggle) |
 | POST | `/import` | Body `{ "url": "..." }` → draft metadata (detect platform + oEmbed) |
 | GET | `/meta` | Allowed platforms / content types / categories |
 | GET | `/projects/{slug}/content` | Related content for a project |
@@ -47,7 +47,7 @@ When unset, the frontend falls back to the bundled sample dataset
 ## Auth
 
 Set `ADMIN_TOKEN` to require the `X-Admin-Token` header on all write
-operations. The admin UI sends it from `NEXT_PUBLIC` config — for real
+operations. The admin UI sends it from `NEXT_PUBLIC` config - for real
 deployments, put the admin behind proper authentication.
 
 ## Import support

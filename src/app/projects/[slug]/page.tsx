@@ -22,6 +22,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/motion/Reveal";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ProjectImage } from "@/components/projects/ProjectImage";
+import { MarqueeRow } from "@/components/ui/MarqueeRow";
 import { Gallery } from "@/components/projects/Gallery";
 import { ContentCard } from "@/components/content/ContentCard";
 import { Footer } from "@/components/Footer";
@@ -40,7 +41,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return { title: "Case Study Not Found" };
-  const title = `${project.name} — ${project.subtitle}`;
+  const title = `${project.name} - ${project.subtitle}`;
   const url = `/projects/${slug}`;
   const images = project.image ? [{ url: project.image, alt: `${project.name} screenshot` }] : undefined;
   return {
@@ -114,19 +115,14 @@ export default async function CaseStudyPage({
         {/* 1. Hero + 2. Overview */}
         <Reveal>
           <p className="label-tech text-accent">{project.subtitle}</p>
-          <h1 className="heading-tech mt-3 text-4xl sm:text-5xl lg:text-6xl">{project.name}</h1>
+          <h1 className="heading-tech mt-3 text-3xl sm:text-5xl lg:text-6xl">{project.name}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{cs.overview}</p>
 
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {project.tech.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-muted"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
+          <MarqueeRow
+            items={project.tech}
+            className="mt-6"
+            pillClass="rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-muted"
+          />
 
           <div className="mt-7 flex flex-wrap gap-3">
             {cs.ctas.map((cta, i) =>
@@ -257,7 +253,7 @@ export default async function CaseStudyPage({
             Screenshot Gallery
           </SectionLabel>
           <p className="mt-2 text-sm text-faint">
-            Tap any frame to open the lightbox — use arrow keys or swipe to navigate.
+            Tap any frame to open the lightbox - use arrow keys or swipe to navigate.
           </p>
           <div className="mt-6">
             <Gallery items={cs.gallery} name={project.name} />
@@ -304,7 +300,7 @@ export default async function CaseStudyPage({
           <SectionLabel icon={Map} className="text-accent">
             Roadmap
           </SectionLabel>
-          <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
             {cs.roadmap.map((item, i) => (
               <li key={item} className="rounded-lg border border-border bg-card/40 p-4">
                 <span className="font-mono text-xs text-mexo">{String(i + 1).padStart(2, "0")}</span>
@@ -321,7 +317,7 @@ export default async function CaseStudyPage({
               Related Content
             </SectionLabel>
             <p className="mt-2 text-sm text-faint">
-              From the Building in Public series — related to this project.
+              From the Building in Public series - related to this project.
             </p>
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
@@ -381,7 +377,7 @@ function ctaClass(primary?: boolean) {
     : "inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-content transition-colors hover:border-accent/50 hover:bg-accent/5";
 }
 
-// Inactive state for CTAs without a real link (href === "#") — lighter green.
+// Inactive state for CTAs without a real link (href === "#") - lighter green.
 const ctaDisabledClass =
   "inline-flex cursor-not-allowed items-center gap-2 rounded-md border border-mexo/30 bg-mexo/10 px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-mexo/50";
 

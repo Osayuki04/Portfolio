@@ -3,7 +3,7 @@ import Image from "next/image";
 /**
  * Renders a real screenshot when `src` is provided, otherwise a theme-aware
  * blueprint "mockup" placeholder. Swap in real screenshots by setting `src`
- * on the project / gallery data — no component changes needed.
+ * on the project / gallery data - no component changes needed.
  */
 export function ProjectImage({
   src,
@@ -24,7 +24,7 @@ export function ProjectImage({
     return (
       <Image
         src={src}
-        alt={label ? `${name} — ${label}` : name}
+        alt={label ? `${name} - ${label}` : name}
         fill
         priority={priority}
         sizes={sizes ?? "(max-width: 768px) 100vw, 50vw"}

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Star, Video, FileText, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { fetchAllContent } from "@/lib/contentApi";
-import { getFeatured, getVideos, getArticles, getInsights, type Content } from "@/lib/content";
+import { getFeatured, getVideos, getArticles, getInsights } from "@/lib/content";
 import { profile } from "@/lib/data";
 import { Reveal } from "@/components/motion/Reveal";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { ContentCard } from "@/components/content/ContentCard";
+import { ContentCarousel } from "@/components/content/ContentCarousel";
 import { ContentExplorer } from "@/components/content/ContentExplorer";
 import { Footer } from "@/components/Footer";
 
 const contentDescription =
-  "Building in Public — Osayuki Obazee's videos, articles, and threads on software development, product building, content creation, and entrepreneurship.";
+  "Building in Public - Osayuki Obazee's videos, articles, and threads on software development, product building, content creation, and entrepreneurship.";
 
 export const metadata: Metadata = {
   title: "Building in Public",
@@ -30,22 +30,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/content",
-    title: "Building in Public — Osayuki Obazee",
+    title: "Building in Public - Osayuki Obazee",
     description: contentDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Building in Public — Osayuki Obazee",
+    title: "Building in Public - Osayuki Obazee",
     description: contentDescription,
   },
 };
 
 export default async function ContentPage() {
   const all = await fetchAllContent();
-  const featured = getFeatured(all).slice(0, 3);
-  const videos = getVideos(all).slice(0, 6);
-  const articles = getArticles(all).slice(0, 6);
-  const insights = getInsights(all).slice(0, 6);
+  const featured = getFeatured(all).slice(0, 12);
+  const videos = getVideos(all).slice(0, 12);
+  const articles = getArticles(all).slice(0, 12);
+  const insights = getInsights(all).slice(0, 12);
 
   return (
     <>
@@ -75,19 +75,17 @@ export default async function ContentPage() {
         {/* Hero */}
         <Reveal>
           <p className="label-tech text-accent">Building in Public</p>
-          <h1 className="heading-tech mt-3 text-4xl sm:text-5xl lg:text-6xl">Building in Public</h1>
+          <h1 className="heading-tech mt-3 text-3xl sm:text-5xl lg:text-6xl">Building in Public</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
             Documenting my journey through software development, product building, content creation,
             and entrepreneurship.
           </p>
         </Reveal>
 
-        {featured.length > 0 && (
-          <Row icon={Star} label="Featured Content" items={featured} />
-        )}
-        {videos.length > 0 && <Row icon={Video} label="Latest Videos" items={videos} />}
-        {articles.length > 0 && <Row icon={FileText} label="Latest Articles" items={articles} />}
-        {insights.length > 0 && <Row icon={Sparkles} label="Latest Insights" items={insights} />}
+        <ContentCarousel items={featured} label="Featured Content" icon="star" />
+        <ContentCarousel items={videos} label="Latest Videos" icon="video" />
+        <ContentCarousel items={articles} label="Latest Articles" icon="article" />
+        <ContentCarousel items={insights} label="Latest Insights" icon="insight" />
 
         {/* All content + categories */}
         <div className="mt-16 border-t border-border pt-12">
@@ -101,26 +99,3 @@ export default async function ContentPage() {
   );
 }
 
-function Row({
-  icon: Icon,
-  label,
-  items,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  items: Content[];
-}) {
-  return (
-    <Reveal className="mt-16">
-      <div className="flex items-center gap-2 label-tech text-faint">
-        <Icon className="h-4 w-4" />
-        {label}
-      </div>
-      <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((item) => (
-          <ContentCard key={item.id} item={item} />
-        ))}
-      </div>
-    </Reveal>
-  );
-}

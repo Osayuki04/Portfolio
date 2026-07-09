@@ -29,7 +29,7 @@ export function Hero() {
         <div className="absolute left-1/2 top-0 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
       </motion.div>
 
-      {/* Architecture diagram — faint background decoration beside the text */}
+      {/* Architecture diagram - faint background decoration beside the text */}
       <motion.div
         aria-hidden
         style={{ y: diagramY }}
@@ -55,7 +55,7 @@ export function Hero() {
               fill
               src={profile.avatarUrl}
               priority
-              alt="Osayuki Obazee — Full Stack Developer & Founder of MEXO"
+              alt="Osayuki Obazee - Full Stack Developer & Founder of MEXO"
               className="h-full w-full object-cover"
             />
           </div>
@@ -93,11 +93,10 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="mt-5 max-w-lg text-lg leading-snug text-muted"
           >
-            I take products from idea to execution and ship real solutions while documenting the
-            journey publicly.
+            I turn ideas into working products, then I share exactly how I built them.
           </motion.p>
 
-          {/* Tech stack — single-line continuous auto-scroll (no wrap on mobile) */}
+          {/* Tech stack - single-line continuous auto-scroll (no wrap on mobile) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
