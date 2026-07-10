@@ -20,7 +20,7 @@ const inter = Inter({
 
 const title = "Osayuki Obazee - Full Stack Developer & Founder of MEXO";
 const description =
-  "Osayuki Obazee (Yuki) - Full Stack Developer and Founder of MEXO. Building products end to end with Next.js, PHP, and MySQL, and sharing the journey publicly.";
+  "Osayuki Obazee (Yuki) is a full stack developer and founder of MEXO. From Edo State, Nigeria, now studying Computer Science at the University of Wolverhampton.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -49,6 +49,11 @@ export const metadata: Metadata = {
     "TypeScript",
     "Founder",
     "Public Builder",
+    "Edo State",
+    "Nigeria",
+    "Nigerian software developer",
+    "University of Wolverhampton",
+    "Computer Science student",
   ],
   authors: [{ name: "Osayuki Obazee", url: siteUrl }],
   creator: "Osayuki Obazee",

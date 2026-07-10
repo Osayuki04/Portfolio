@@ -37,7 +37,7 @@ Best fit for Next.js: zero-config, global CDN, great Core Web Vitals.
 2. Add Environment Variables (from `.env.production.example`):
    `NEXT_PUBLIC_CONTENT_API_URL`, `CONTENT_API_URL`, `ADMIN_TOKEN`,
    `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `AUTH_SECRET`.
-3. Add your domain `osayukiobazee.xyz` in Vercel → point DNS (Hostinger DNS)
+3. Add your domain `osayukiobazee.com` in Vercel → point DNS (Hostinger DNS)
    per Vercel's instructions.
 
 **PHP API → Hostinger** (see step 3 below).
@@ -59,11 +59,11 @@ Requires a plan with **Node.js support** (Business / Cloud / VPS).
 1. **Database**: hPanel → MySQL Databases → create a DB + user. Import
    `backend/schema.sql` via phpMyAdmin (creates tables + seed content).
 2. **Upload** the `backend/` folder into `public_html/backend` (or a subdomain
-   like `api.osayukiobazee.xyz`).
+   like `api.osayukiobazee.com`).
 3. **Config** - set these as env vars (hPanel → PHP env / or `SetEnv` in
    `backend/.htaccess`):
    - `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`
-   - `CORS_ORIGIN=https://osayukiobazee.xyz`
+   - `CORS_ORIGIN=https://osayukiobazee.com`
    - `ADMIN_TOKEN=` (the SAME value as the Next.js `ADMIN_TOKEN`)
 4. Verify: `https://<your-api-host>/backend/index.php?path=/meta` returns JSON.
 
@@ -74,5 +74,5 @@ Requires a plan with **Node.js support** (Business / Cloud / VPS).
 - Point `NEXT_PUBLIC_CONTENT_API_URL` / `CONTENT_API_URL` at the real PHP host.
 - Set a strong `ADMIN_PASSWORD` and a fresh `AUTH_SECRET` (`openssl rand -hex 32`).
 - Google Search Console: add the property and submit
-  `https://osayukiobazee.xyz/sitemap.xml`.
+  `https://osayukiobazee.com/sitemap.xml`.
 - Confirm HTTPS everywhere (no mixed content - the PHP API must be HTTPS).

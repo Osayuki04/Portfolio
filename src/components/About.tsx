@@ -37,6 +37,10 @@ export function About() {
                 I care less about clever code and more about whether the thing works, and keeps
                 working.
               </p>
+              <p>
+                I&apos;m from Edo State, Nigeria, and I&apos;m studying Computer Science at the
+                University of Wolverhampton.
+              </p>
             </div>
           </Reveal>
 

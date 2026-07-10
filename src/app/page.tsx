@@ -10,10 +10,13 @@ import { Contact } from "@/components/Contact";
 import { Support } from "@/components/Support";
 import { Footer } from "@/components/Footer";
 import { MobileResumeFab } from "@/components/ui/MobileResumeFab";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { profilePageJsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={profilePageJsonLd()} />
       <Navbar />
       <a
         href="#hero"

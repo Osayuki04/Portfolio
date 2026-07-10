@@ -4,7 +4,7 @@
 
 import { profile } from "@/lib/data";
 
-export const siteUrl = "https://osayukiobazee.xyz";
+export const siteUrl = "https://osayukiobazee.com";
 export const siteName = "Osayuki Obazee";
 export const personName = "Osayuki Obazee";
 export const jobTitle = "Full Stack Developer";
@@ -20,17 +20,32 @@ export const socialUrls = [
 
 const abs = (path: string) => (path.startsWith("http") ? path : `${siteUrl}${path}`);
 
+/** Stable node id so every schema below points at ONE person, not copies of one. */
+export const PERSON_ID = `${siteUrl}/#person`;
+
 export function personJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": PERSON_ID,
     name: personName,
     alternateName: "Yuki",
     url: siteUrl,
     image: abs(profile.avatarUrl),
     jobTitle,
+    description:
+      "Osayuki Obazee (Yuki) is a full stack developer and founder of MEXO, from Edo State, Nigeria, studying Computer Science at the University of Wolverhampton.",
     email: `mailto:${profile.email}`,
     sameAs: socialUrls,
+    nationality: { "@type": "Country", name: "Nigeria" },
+    birthPlace: { "@type": "Place", name: "Edo State, Nigeria" },
+    homeLocation: { "@type": "Place", name: "Wolverhampton, England, United Kingdom" },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "University of Wolverhampton",
+      sameAs: "https://www.wlv.ac.uk/",
+    },
+    hasOccupation: { "@type": "Occupation", name: jobTitle },
     knowsAbout: [
       "Full-Stack Development",
       "Next.js",
@@ -49,10 +64,25 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: siteName,
     url: siteUrl,
     inLanguage: "en",
-    author: { "@type": "Person", name: personName, url: siteUrl },
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": PERSON_ID },
+  };
+}
+
+/** Homepage only: tells Google this page IS the profile of that person. */
+export function profilePageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${siteUrl}/#profilepage`,
+    url: siteUrl,
+    name: `${personName}, ${tagline}`,
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    mainEntity: { "@id": PERSON_ID },
   };
 }
 
