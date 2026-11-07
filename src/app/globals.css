@@ -1,54 +1,107 @@
 @import "tailwindcss";
 
+/*
+  Black + green. One ground, one ink.
+  Token names are kept from the previous system so every page (home, /content,
+  case studies, admin) picks up the new world without per-file rewrites.
+*/
 @theme {
-  --color-background: #041b18;
-  --color-surface: #07211d;
-  --color-card: #0d2f28;
-  --color-footer: #02100e;
+  --color-background: #070908;
+  --color-surface: #0d110f;
+  --color-card: #121714;
+  --color-footer: #040605;
+  /* deep green field, used for large colour regions */
+  --color-deep: #0b2a1c;
 
-  --color-content: #ece7d5;
-  --color-muted: #b8bbae;
-  --color-faint: #8e9488;
+  --color-content: #edf2ee;
+  --color-muted: #a3ada7;
+  --color-faint: #7d8982;
 
-  --color-accent: #d7d0bc;
-  --color-mexo: #6b9a76;
-  /* Heading highlight - a more dominant coffee/caramel that pops in dark mode */
-  --color-highlight: #cba56a;
+  /* the brand green */
+  --color-accent: #3ccb7f;
+  --color-accent-strong: #5fe09a;
+  --color-on-accent: #03140b;
+  --color-mexo: #3ccb7f;
+  --color-highlight: #3ccb7f;
 
-  --color-border: rgba(233, 228, 207, 0.12);
-  --color-grid: rgba(184, 195, 168, 0.02);
+  --color-border: rgba(237, 242, 238, 0.12);
+  --color-border-strong: rgba(237, 242, 238, 0.28);
+  --color-grid: transparent;
 
-  --font-display: var(--font-jetbrains), ui-monospace, monospace;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-}
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-/* Light mode - "paper blueprint": warm cream paper, deep-green ink.
-   Overrides the same theme tokens, so every token-based utility adapts. */
-html.light {
-  --color-background: #f2eee1;
-  --color-surface: #ebe6d6;
-  --color-card: #faf7ef;
-  --color-footer: #e7e2d2;
-
-  --color-content: #122a20;
-  --color-muted: #46564b;
-  --color-faint: #6b7a6e;
-
-  --color-accent: #2c5e47;
-  --color-mexo: #2f7d55;
-  /* Heading highlight - green on the cream "paper" light theme */
-  --color-highlight: #2f7d55;
-
-  --color-border: rgba(18, 42, 32, 0.14);
-  --color-grid: rgba(44, 94, 71, 0.04);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
   color-scheme: dark;
 }
-html.light {
-  color-scheme: light;
+
+/*
+  Section tones: three colours only. Black (ink) and two greens (deep and
+  bright). Each re-points the same tokens, so every utility inside a section
+  (text-content, border-border, bg-accent ...) adapts to its ground. Each tone
+  sets its full token set, so it also works nested on a card inside another.
+*/
+.tone-ink,
+.tone-deep,
+.tone-green {
+  background-color: var(--color-background);
+  color: var(--color-content);
+}
+
+/* Black. */
+.tone-ink {
+  --color-background: #070908;
+  --color-surface: #0d110f;
+  --color-card: #121714;
+  --color-content: #edf2ee;
+  --color-muted: #a3ada7;
+  --color-faint: #7d8982;
+  --color-accent: #3ccb7f;
+  --color-accent-strong: #5fe09a;
+  --color-on-accent: #03140b;
+  --color-border: rgba(237, 242, 238, 0.12);
+  --color-border-strong: rgba(237, 242, 238, 0.28);
+  color-scheme: dark;
+}
+
+/* Deep green, light text. */
+.tone-deep {
+  --color-background: #0b2a1c;
+  --color-surface: #0f3323;
+  --color-card: #143d2b;
+  --color-content: #edf2ee;
+  --color-muted: #a8c0b2;
+  --color-faint: #86a394;
+  --color-accent: #3ccb7f;
+  --color-accent-strong: #5fe09a;
+  --color-on-accent: #03140b;
+  --color-border: rgba(237, 242, 238, 0.14);
+  --color-border-strong: rgba(237, 242, 238, 0.32);
+  color-scheme: dark;
+}
+
+/* Bright brand green, dark text; on green, black is the accent ink. */
+.tone-green {
+  --color-background: #3ccb7f;
+  --color-surface: #35bb74;
+  --color-card: #2fad6a;
+  --color-content: #03140b;
+  --color-muted: #0f3f25;
+  --color-faint: #175232;
+  --color-accent: #03140b;
+  --color-accent-strong: #0b2a1c;
+  --color-on-accent: #3ccb7f;
+  --color-border: rgba(3, 20, 11, 0.18);
+  --color-border-strong: rgba(3, 20, 11, 0.42);
+}
+
+.tone-green ::selection {
+  background-color: #03140b;
+  color: #3ccb7f;
 }
 
 @layer base {
@@ -58,25 +111,21 @@ html.light {
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5rem;
   }
 
   body {
     background-color: var(--color-background);
-    /* Blueprint engineering grid - fixed across the whole site */
-    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-attachment: fixed;
     color: var(--color-content);
     font-family: var(--font-sans);
+    font-stretch: 100%;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
-    color: var(--color-content);
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
   }
 
   h1,
@@ -84,14 +133,43 @@ html.light {
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: var(--color-accent);
   }
 }
 
 @layer utilities {
   .container-px {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-px {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -101,29 +179,45 @@ html.light {
     }
   }
 
-  /* Technical heading: uppercase, wide tracking, monospace */
+  /* Archivo's width axis: wide-light titles, condensed-black giants. */
+  .font-wide {
+    font-stretch: 125%;
+  }
+  .font-semiwide {
+    font-stretch: 112%;
+  }
+  .font-condensed {
+    font-stretch: 72%;
+  }
+
+  /* Outline numerals (experience index). */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-content);
+  }
+
+  /* Section title in the wide-light voice (shared by subpages). */
   .heading-tech {
     font-family: var(--font-display);
+    font-stretch: 125%;
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   .label-tech {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-stretch: 112%;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
-    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    font-weight: 600;
   }
 
-  /* Denser blueprint overlay for hero/feature areas */
   .grid-bg {
-    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-image: none;
   }
 
-  /* Swipeable strips on mobile: scrollable but with no visible scrollbar. */
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -132,46 +226,23 @@ html.light {
     display: none;
   }
 
-  .radial-fade {
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  .link-underline {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    text-decoration-color: var(--color-border-strong);
+    transition: text-decoration-color 180ms ease-out, color 180ms ease-out;
+  }
+  .link-underline:hover {
+    text-decoration-color: var(--color-accent);
   }
 
-  /* Engineering panel corner ticks */
-  .corner-ticks {
-    position: relative;
-  }
-  .corner-ticks::before,
-  .corner-ticks::after {
-    content: "+";
-    position: absolute;
-    color: var(--color-faint);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    line-height: 1;
-    opacity: 0.55;
-  }
-  .corner-ticks::before {
-    top: 0.4rem;
-    left: 0.5rem;
-  }
-  .corner-ticks::after {
-    bottom: 0.4rem;
-    right: 0.5rem;
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* Data-flow marching-ants along dotted connectors */
-@keyframes dashflow {
-  to {
-    stroke-dashoffset: -16;
-  }
-}
-.animate-dashflow {
-  animation: dashflow 0.7s linear infinite;
-}
-
-/* Full-width product showcase marquee */
+/* Continuous marquee (tech stack strip, skill rows). */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -181,59 +252,62 @@ html.light {
   }
 }
 .animate-marquee {
-  /* !important so the global reduced-motion reset below can't freeze the
-     product showcase - this is an intentional, continuous auto-scroll. */
-  animation: marquee 40s linear infinite !important;
-  will-change: transform;
+  animation: marquee 40s linear infinite;
 }
-
-/* Faster variant for the compact hero tech-pill marquee */
 .animate-marquee-pills {
-  animation: marquee 28s linear infinite !important;
-  will-change: transform;
+  animation: marquee 28s linear infinite;
 }
 
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 6%,
-    #000 94%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
-/* Custom scrollbar */
+/* Wider, gradual fade for strips with edge blur. */
+.marquee-mask-wide {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+/* Edge blur that is strongest at the very edge and fades to nothing inward. */
+.marquee-blur-left,
+.marquee-blur-right {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.marquee-blur-left {
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent);
+  mask-image: linear-gradient(90deg, #000, transparent);
+}
+.marquee-blur-right {
+  -webkit-mask-image: linear-gradient(270deg, #000, transparent);
+  mask-image: linear-gradient(270deg, #000, transparent);
+}
+
+/* Scrollbar, themed from the palette. */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #02100e;
+  background: #040605;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a3b33;
+  background: #1c2620;
   border-radius: 999px;
-  border: 2px solid #02100e;
+  border: 2px solid #040605;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a4f45;
+  background: var(--color-accent);
 }
-
-html.light ::-webkit-scrollbar-track {
-  background: #e7e2d2;
-}
-html.light ::-webkit-scrollbar-thumb {
-  background: #c3bda8;
-  border: 2px solid #e7e2d2;
-}
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: #a9a487;
+html {
+  scrollbar-color: #1c2620 #040605;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

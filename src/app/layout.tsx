@@ -1,19 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { Archivo, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 import { siteUrl, siteName, personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
+// Archivo's width axis carries both voices from the references: expanded-light
+// section titles and condensed-black giant words.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  axes: ["wdth"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -89,7 +92,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#041b18",
+  themeColor: "#070908",
   width: "device-width",
   initialScale: 1,
 };
@@ -97,13 +100,8 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}if(t==='light'){document.documentElement.classList.add('light');}}catch(e){}})();`;
-
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${inter.variable}`}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+    <html lang="en" className={`${archivo.variable} ${geistMono.variable}`}>
       <body className="antialiased">
         <JsonLd data={[personJsonLd(), websiteJsonLd()]} />
         <ScrollProgress />

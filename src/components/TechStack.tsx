@@ -1,53 +1,52 @@
-import { Layers, Server, Database, Wrench } from "lucide-react";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
+import { BigHeading } from "@/components/ui/BigHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { techStack } from "@/lib/data";
 
-const categoryIcon: Record<string, typeof Layers> = {
-  Frontend: Layers,
-  Backend: Server,
-  Database: Database,
-  Tools: Wrench,
-};
-
 export function TechStack() {
   return (
-    <Section id="tech">
-      <SectionHeading
-        eyebrow="Tech Stack"
-        title="Tools I build with"
-        description="The tools I actually reach for when I need to ship something."
-      />
+    <Section id="tech" tone="ink" ariaLabelledby="tech-title">
+      <Reveal>
+        <BigHeading id="tech-title" text="Tools I build with" lines={["Tools I", "build with"]} />
+      </Reveal>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {techStack.map((group, i) => {
-          const Icon = categoryIcon[group.category] ?? Layers;
-          return (
-            <Reveal key={group.category} delay={i * 0.05}>
-              <div className="h-full rounded-2xl border border-border bg-card/40 p-6 transition-colors hover:border-accent/30">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/15 text-accent">
-                    <Icon className="h-[18px] w-[18px]" />
-                  </span>
-                  <h3 className="font-display text-base font-semibold text-content">
-                    {group.category}
-                  </h3>
-                </div>
-                <ul className="mt-5 space-y-2.5">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2.5 text-sm text-muted"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent/60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          );
-        })}
+      <Reveal delay={0.04}>
+        <p className="mt-14 max-w-2xl text-lg font-medium leading-snug sm:mt-20 sm:text-xl">
+          The tools I actually reach for when I need to ship something, from the first commit to
+          the deploy.
+        </p>
+      </Reveal>
+
+      {/* One tall card per category, so the section is filled edge to edge. */}
+      <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        {techStack.map((group, i) => (
+          <Reveal
+            key={group.category}
+            delay={0.06 + i * 0.05}
+            className={`flex flex-col rounded-3xl p-5 sm:min-h-[15rem] sm:p-7 lg:min-h-[17rem] ${
+              i === 0 ? "bg-accent text-on-accent" : "bg-card"
+            }`}
+          >
+            <div className="flex items-baseline justify-between">
+              <h3 className="text-xs font-bold uppercase tracking-[0.08em] font-semiwide">
+                {group.category}
+              </h3>
+              <span className="font-mono text-xs opacity-60 tabular">
+                {String(group.items.length).padStart(2, "0")}
+              </span>
+            </div>
+            <ul className="mt-auto space-y-0.5 pt-6 sm:pt-8">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="font-display text-[clamp(1.05rem,1.9vw,1.75rem)] font-bold leading-[1.08] tracking-[-0.025em]"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
       </div>
     </Section>
   );

@@ -20,7 +20,6 @@ import { profile } from "@/lib/data";
 import { projectJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/motion/Reveal";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ProjectImage } from "@/components/projects/ProjectImage";
 import { MarqueeRow } from "@/components/ui/MarqueeRow";
 import { Gallery } from "@/components/projects/Gallery";
@@ -99,7 +98,6 @@ export default async function CaseStudyPage({
             All Projects
           </Link>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <a
               href={profile.resumeUrl}
               download

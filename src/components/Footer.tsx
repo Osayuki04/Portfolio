@@ -1,82 +1,67 @@
-import Link from "next/link";
-import { Coffee, FileText } from "lucide-react";
+import { BigHeading } from "@/components/ui/BigHeading";
 import { profile } from "@/lib/data";
-import { socialIcon } from "@/components/ui/SocialIcons";
 
-const footerLinks = [
-  { key: "github", ...profile.socials.github },
-  { key: "linkedin", ...profile.socials.linkedin },
-  { key: "x", ...profile.socials.x },
-  { key: "tiktok", ...profile.socials.tiktok },
-  { key: "instagram", ...profile.socials.instagram },
+// Scattered names above the headline, after the reference's footer.
+const scattered = [
+  { label: "GitHub", href: profile.socials.github.url, pos: "col-start-4 row-start-1" },
+  { label: "LinkedIn", href: profile.socials.linkedin.url, pos: "col-start-7 row-start-1" },
+  { label: "TikTok", href: profile.socials.tiktok.url, pos: "col-start-11 row-start-1 justify-self-end" },
+  { label: "Instagram", href: profile.socials.instagram.url, pos: "col-start-1 row-start-2" },
+  { label: "X / Twitter", href: profile.socials.x.url, pos: "col-start-6 row-start-2" },
+  { label: "Resume", href: profile.resumeUrl, pos: "col-start-9 row-start-2" },
+] as const;
+
+const pills = [
+  { label: "GitHub", href: profile.socials.github.url },
+  { label: "LinkedIn", href: profile.socials.linkedin.url },
+  { label: "X", href: profile.socials.x.url },
 ] as const;
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-footer">
-      <div className="mx-auto w-full max-w-6xl container-px py-14">
-        <div className="flex flex-col justify-between gap-10 lg:flex-row">
-          <div>
-            <Link href="#hero" className="flex items-center gap-2 font-display text-xl font-bold">
-              Osayuki<span className="text-accent">.</span>
-            </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-              Full Stack Developer building MEXO. Shipping products and sharing the journey publicly.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-2">
-              {footerLinks.map((item) => {
-                const Icon = socialIcon[item.key];
-                return (
-                  <a
-                    key={item.key}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={item.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-accent/40 hover:text-content"
-                  >
-                    <Icon className="h-[18px] w-[18px]" />
-                  </a>
-                );
-              })}
-              <a
-                href={`mailto:${profile.email}`}
-                aria-label="Email"
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-accent/40 hover:text-content"
-              >
-                <socialIcon.email className="h-[18px] w-[18px]" />
-              </a>
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Resume"
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-accent/40 hover:text-content"
-              >
-                <FileText className="h-[18px] w-[18px]" />
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start gap-3 lg:items-end">
+    <footer className="tone-deep relative -mt-10 flex min-h-dvh flex-col rounded-t-[2rem] sm:-mt-12 sm:rounded-t-[3rem]">
+      <div className="flex w-full flex-1 flex-col justify-between container-px pt-20 pb-8 sm:pt-28">
+        {/* Scattered outline pills; each fills green on hover. */}
+        <nav aria-label="Social" className="hidden grid-cols-12 items-center gap-y-6 sm:grid">
+          {scattered.map((s) => (
             <a
-              href="https://www.buymeacoffee.com/"
+              key={s.label}
+              href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-accent bg-accent px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-content hover:border-content"
+              className={`${s.pos} col-span-2 w-max whitespace-nowrap rounded-full border border-border-strong px-4 py-2 text-xs font-semibold uppercase tracking-[0.06em] text-content transition-colors duration-200 hover:border-accent hover:bg-accent hover:text-on-accent`}
             >
-              <Coffee className="h-4 w-4" />
-              Buy Me A Coffee
+              {s.label}
             </a>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">
-              Support My Journey
-            </p>
+          ))}
+        </nav>
+
+        <div className="my-16">
+          <BigHeading as="p" text="Let's talk" fill />
+          <div className="mt-12 flex flex-wrap justify-center gap-2.5">
+            {pills.map((p) => (
+              <a
+                key={p.label}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-content px-5 py-2.5 text-xs font-bold uppercase tracking-[0.06em] text-background transition-colors duration-200 hover:bg-accent hover:text-on-accent"
+              >
+                {p.label}
+              </a>
+            ))}
+            <a
+              href={`mailto:${profile.email}`}
+              className="rounded-full border border-accent px-5 py-2.5 text-xs font-bold uppercase tracking-[0.06em] text-accent transition-colors duration-200 hover:bg-accent hover:text-on-accent"
+            >
+              Email me
+            </a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-muted sm:flex-row">
-          <p>© 2026 Osayuki</p>
-          <p className="font-mono text-xs">Designed & Built By Osayuki</p>
+        <div className="flex flex-col items-center justify-between gap-2 border-t border-border pt-6 text-xs text-faint sm:flex-row">
+          <p>© {new Date().getFullYear()} Osayuki Obazee</p>
+          <p>Designed &amp; built by Osayuki</p>
         </div>
       </div>
     </footer>

@@ -1,74 +1,70 @@
 import { Coffee } from "lucide-react";
+import { PhotoSwiper } from "@/components/ui/PhotoSwiper";
+import { Section } from "@/components/ui/Section";
+import { BigHeading } from "@/components/ui/BigHeading";
 import { Reveal } from "@/components/motion/Reveal";
-import { Counter } from "@/components/mexo/Counter";
 import { mexo } from "@/lib/data";
 
-const supportMetrics = [
-  mexo.metrics.find((m) => m.label === "Teams Covered")!,
-  mexo.metrics.find((m) => m.label === "Competitions Covered")!,
-  mexo.metrics.find((m) => m.label === "Articles Processed")!,
-];
+const PHOTOS = [
+  { src: "/me3.jpeg", alt: "Osayuki talking through a build with his laptop", pos: "62% 38%" },
+  { src: "/desk.jpeg", alt: "Two laptops showing a system design diagram", pos: "50% 40%" },
+  { src: "/yukipic.jpeg", alt: "Portrait of Osayuki Obazee", pos: "50% 30%" },
+] as const;
+
+const supportMetrics = mexo.metrics.filter((m) =>
+  ["Players", "Teams Covered", "Leagues Covered"].includes(m.label)
+);
 
 export function Support() {
   return (
-    <section className="relative scroll-mt-24 overflow-hidden py-24 sm:py-28">
-      <div className="mx-auto w-full max-w-6xl container-px">
-        <div className="corner-ticks grid gap-8 rounded-lg border border-border bg-card/40 p-6 sm:p-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-12 lg:p-12">
-          <Reveal>
-            <h2 className="heading-tech text-2xl sm:text-4xl">
-              Support My <span className="text-highlight">Journey</span> <span className="align-middle">☕</span>
-            </h2>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-              I build in public and share what I learn along the way. If any of it has been useful, a coffee helps fuel the next one.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="https://www.buymeacoffee.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-accent bg-accent px-6 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-content hover:border-content"
-              >
-                <Coffee className="h-4 w-4" />
-                Buy Me A Coffee
-              </a>
-              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted">
-                Fuel my next Idea
-              </span>
-            </div>
-          </Reveal>
+    <Section id="support" tone="ink" ariaLabelledby="support-title">
+      <Reveal>
+        <BigHeading id="support-title" text="Support My Journey" lines={["Support", "my journey"]} />
+      </Reveal>
 
-          {/* Support card */}
-          <Reveal delay={0.08}>
-            <div className="rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm">
-              {/* Stack on phones so "Current Project" never squeezes against the pill. */}
-              <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="min-w-0">
-                  <p className="whitespace-nowrap text-xs uppercase tracking-[0.12em] text-muted sm:tracking-[0.16em]">
-                    Current Project
-                  </p>
-                  <p className="mt-1 font-display text-xl font-bold text-content">MEXO</p>
-                </div>
+      <div className="mt-14 grid grid-cols-1 items-center gap-10 sm:mt-20 lg:grid-cols-2 lg:gap-16">
+        {/* Photo swiper, same as About: three on ultra-wide screens, two on
+            PCs and tablets, one on phones. (me2 is left out: its burned-in
+            subtitle would show in these tall frames.) */}
+        <PhotoSwiper photos={PHOTOS} label="Building in public" className="min-w-0" />
+
+        <Reveal delay={0.06}>
+          <p className="font-display text-[clamp(1.75rem,2.6vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+            I build in public and share what I learn along the way.
+          </p>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+            If any of it has been useful, a coffee helps fuel the next video, the next write-up and
+            the next feature for MEXO.
+          </p>
+          <a
+            href="https://www.buymeacoffee.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-on-accent transition-colors duration-200 hover:bg-accent-strong"
+          >
+            <Coffee className="size-4" />
+            Buy me a coffee
+          </a>
+
+          <p className="mt-12 text-xs font-bold uppercase tracking-[0.08em] text-muted">
+            Currently building MEXO
+          </p>
+          <dl className="mt-4 grid grid-cols-3 border-t border-border-strong">
+            {supportMetrics.map((m) => (
+              <div
+                key={m.label}
+                className="border-r border-border-strong pt-4 pr-3 pl-3 first:pl-0 last:border-r-0"
+              >
+                <dt className="sr-only">{m.label}</dt>
+                <dd className="font-display text-[clamp(1.6rem,3.4vw,3.75rem)] font-semibold leading-none tracking-[-0.04em] tabular">
+                  {m.value}
+                </dd>
+                <dd className="mt-2 text-xs leading-tight text-muted">{m.label}</dd>
               </div>
-              {/* Stacked rows on phones (3 columns squeezes these numbers), 3 up from sm. */}
-              <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-                {supportMetrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="flex min-w-0 items-baseline justify-between gap-3 bg-card/70 px-4 py-3 sm:block sm:p-4 sm:text-center"
-                  >
-                    <div className="shrink-0 font-display text-base font-bold text-content sm:text-xl">
-                      <Counter value={metric.value} />
-                    </div>
-                    <div className="min-w-0 text-right text-xs leading-tight text-muted sm:mt-1 sm:text-center sm:text-[11px]">
-                      {metric.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

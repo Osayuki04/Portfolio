@@ -6,15 +6,19 @@
  * set is duplicated so `translateX(-50%)` loops seamlessly.
  *
  * `min-w-0 max-w-full` + `overflow-hidden` keep it from widening its ancestors.
+ * `edgeBlur` adds a soft blur at both ends that fades out towards the middle,
+ * on top of the transparency fade.
  */
 export function MarqueeRow({
   items,
   className = "",
   pillClass = "",
+  edgeBlur = false,
 }: {
   items: readonly string[];
   className?: string;
   pillClass?: string;
+  edgeBlur?: boolean;
 }) {
   if (items.length === 0) return null;
 
@@ -22,7 +26,11 @@ export function MarqueeRow({
   const row = [...widened, ...widened];
 
   return (
-    <div className={`marquee-mask relative w-full min-w-0 max-w-full overflow-hidden py-1 ${className}`}>
+    <div
+      className={`relative w-full min-w-0 max-w-full overflow-hidden py-1 ${
+        edgeBlur ? "marquee-mask-wide" : "marquee-mask"
+      } ${className}`}
+    >
       {/* Visible, animated strip. Duplicated content, so hide it from AT. */}
       <ul
         aria-hidden="true"
@@ -34,6 +42,13 @@ export function MarqueeRow({
           </li>
         ))}
       </ul>
+
+      {edgeBlur && (
+        <>
+          <span aria-hidden className="marquee-blur-left pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24" />
+          <span aria-hidden className="marquee-blur-right pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24" />
+        </>
+      )}
 
       {/* Real list for screen readers. */}
       <ul className="sr-only">

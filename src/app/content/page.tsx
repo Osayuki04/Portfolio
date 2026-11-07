@@ -5,7 +5,6 @@ import { fetchAllContent } from "@/lib/contentApi";
 import { getFeatured, getVideos, getArticles, getInsights } from "@/lib/content";
 import { profile } from "@/lib/data";
 import { Reveal } from "@/components/motion/Reveal";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ContentCarousel } from "@/components/content/ContentCarousel";
 import { ContentExplorer } from "@/components/content/ContentExplorer";
 import { Footer } from "@/components/Footer";
@@ -59,7 +58,6 @@ export default async function ContentPage() {
             Back Home
           </Link>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <a
               href={profile.resumeUrl}
               download

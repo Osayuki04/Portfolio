@@ -51,13 +51,12 @@ export const projects: Project[] = [
     category: "Football Technology Platform",
     subtitle: "Football Platform",
     summary:
-      "A football platform that aggregates and organizes news, transfers, competitions, and team information into a structured, searchable experience. Built to solve fragmented football coverage by bringing content from multiple sources into one centralized ecosystem.",
-    tech: ["Next.js", "PHP", "MySQL", "Tailwind CSS"],
+      "A live football data platform with real users: a 23-collection MongoDB schema spanning 127k players, 51k transfers, 10.8k teams and 1.2k leagues across 171 countries, a 115-endpoint PHP REST API, and a React/Next.js frontend used by 100+ registered users.",
+    tech: ["Next.js", "React", "PHP", "MongoDB", "Tailwind CSS"],
     image: "/mexo1.jpeg",
-    liveUrl: "#",
+    liveUrl: "https://mexosports.com",
     liveLabel: "View Project",
     flagship: true,
-    status: "Actively Building",
     relatedContent: [
       "building-a-football-database",
       "automating-football-content-categorization",
@@ -73,7 +72,7 @@ export const projects: Project[] = [
       systemDesign: [
         { label: "Client", value: "Next.js + Tailwind CSS" },
         { label: "API", value: "PHP REST API" },
-        { label: "Database", value: "MySQL" },
+        { label: "Database", value: "MongoDB, 23 collections" },
         { label: "External Sources", value: "Football news feeds and data providers" },
       ],
       processTitle: "Content Pipeline",
@@ -85,10 +84,10 @@ export const projects: Project[] = [
       ],
       database: ["Teams", "Competitions", "Articles", "Sources", "Categories"],
       metrics: [
-        { value: "5,000+", label: "Articles Processed" },
-        { value: "500+", label: "Teams Covered" },
-        { value: "40+", label: "Competitions Covered" },
-        { value: "20+", label: "News Sources" },
+        { value: "127k", label: "Players" },
+        { value: "51k", label: "Transfers" },
+        { value: "115", label: "API Endpoints" },
+        { value: "92%", label: "Faster Response Time" },
       ],
       challenges: [
         {
@@ -119,8 +118,81 @@ export const projects: Project[] = [
         { label: "Mobile Views" },
       ],
       ctas: [
-        { label: "View Platform", href: "#", primary: true, external: true },
+        { label: "View Platform", href: "https://mexosports.com", primary: true, external: true },
         { label: "Follow Development", href: "https://x.com/", external: true },
+      ],
+    },
+  },
+  {
+    slug: "jerkspots",
+    name: "Jerkspots",
+    category: "QSR Automation System",
+    subtitle: "QSR Automation System",
+    summary:
+      "A customer-facing website and admin dashboard for a food business, with Stripe payments and Royal Mail shipping built in. Shaped with the non-technical owners over several feedback rounds, it contributed to a 40% increase in online bookings after launch.",
+    tech: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    image: "/jerkspots/jerkspots-home.png",
+    liveUrl: "https://jerkspots.vercel.app/",
+    liveLabel: "View Project",
+    caseStudy: {
+      overview:
+        "Jerkspots is a quick-service restaurant (QSR) automation system: a customer-facing website plus an admin dashboard that lets a food business take orders and bookings, accept payments and ship products online.",
+      problem:
+        "The business ran its orders and bookings by hand, with no single place for customers to order, pay and book, and no dashboard for the owners to manage it.",
+      solution:
+        "A Next.js customer site and admin dashboard backed by Node.js and PostgreSQL, with Stripe for payments and Royal Mail for shipping. Each feature was shaped with the owners across multiple feedback iterations and covered by Jest and Cypress tests.",
+      systemDesign: [
+        { label: "Frontend", value: "Next.js, React, TypeScript, Tailwind CSS" },
+        { label: "Backend", value: "Node.js" },
+        { label: "Database", value: "PostgreSQL" },
+        { label: "Integrations", value: "Stripe payments, Royal Mail shipping" },
+        { label: "Testing", value: "Jest (unit) and Cypress (end-to-end)" },
+      ],
+      processTitle: "How It Was Built",
+      process: [
+        { step: "01", title: "Discover", detail: "Turn the owners' goals into a feature list." },
+        { step: "02", title: "Build", detail: "Ship the customer site and admin dashboard." },
+        { step: "03", title: "Integrate", detail: "Wire in Stripe payments and Royal Mail shipping." },
+        { step: "04", title: "Iterate", detail: "Refine with the owners across feedback rounds." },
+      ],
+      database: ["Customers", "Orders", "Bookings", "Products", "Payments", "Shipments"],
+      metrics: [
+        { value: "40%", label: "More Online Bookings" },
+        { value: "2", label: "Apps: Site + Dashboard" },
+        { value: "Stripe", label: "Payments" },
+        { value: "E2E", label: "Jest + Cypress Tests" },
+      ],
+      challenges: [
+        {
+          title: "Working with non-technical owners",
+          detail:
+            "Requirements came from the business, not a spec. Short feedback loops turned their goals into features they could see and react to.",
+        },
+        {
+          title: "Payments and shipping",
+          detail:
+            "Stripe and Royal Mail had to fit cleanly into the order flow so customers could pay and track deliveries without friction.",
+        },
+        {
+          title: "Confidence to ship",
+          detail:
+            "Jest unit tests and Cypress end-to-end tests cover the critical paths, so changes from each feedback round could go out safely.",
+        },
+      ],
+      impact:
+        "Jerkspots moved the business online end to end, contributing to a 40% increase in online bookings after launch.",
+      roadmap: ["Loyalty rewards", "Order tracking notifications", "Sales analytics", "Kitchen display"],
+      gallery: [
+        { label: "Homepage", src: "/jerkspots/jerkspots-home.png" },
+        { label: "Ways to Enjoy", src: "/jerkspots/jerkspots-services.png" },
+        { label: "Customer Reviews", src: "/jerkspots/jerkspots-reviews.png" },
+        { label: "Sauce Shop", src: "/jerkspots/jerkspots-shop.png" },
+        { label: "Shop & Gallery", src: "/jerkspots/jerkspots-sauces.png" },
+        { label: "Footer", src: "/jerkspots/jerkspots-footer.png" },
+      ],
+      ctas: [
+        { label: "Visit Site", href: "https://jerkspots.vercel.app/", primary: true, external: true },
+        { label: "Contact Me", href: "/#contact" },
       ],
     },
   },
@@ -176,8 +248,8 @@ export const projects: Project[] = [
       metrics: [
         { value: "3", label: "Role-Based Portals" },
         { value: "9", label: "Database Tables" },
-        { value: "12", label: "bcrypt Cost Factor" },
-        { value: "OTP", label: "Email 2FA + Lockout" },
+        { value: "88", label: "Routes, 16 Controllers" },
+        { value: "29k", label: "Records Load-Tested" },
       ],
       challenges: [
         {

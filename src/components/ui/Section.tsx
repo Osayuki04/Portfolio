@@ -1,78 +1,42 @@
 import type { ReactNode } from "react";
-import { Reveal } from "@/components/motion/Reveal";
 
+/** Three colours only: black and two greens. */
+export type Tone = "ink" | "deep" | "green";
+
+/**
+ * A full-width panel. Every panel after the hero rides up over the one before
+ * it with rounded top corners, so the colour changes read as layers. All
+ * panels share one minimum height (the height of the Projects section) so the
+ * page keeps an even rhythm.
+ */
 export function Section({
   id,
+  tone,
   children,
   className = "",
+  innerClassName = "",
+  ariaLabelledby,
 }: {
   id: string;
+  tone: Tone;
   children: ReactNode;
   className?: string;
+  innerClassName?: string;
+  ariaLabelledby?: string;
 }) {
   return (
     <section
       id={id}
-      className={`relative scroll-mt-24 py-24 sm:py-28 lg:py-32 ${className}`}
+      aria-labelledby={ariaLabelledby}
+      className={`tone-${tone} relative -mt-10 flex min-h-dvh scroll-mt-16 flex-col rounded-t-[2rem] pt-24 pb-34 sm:-mt-12 sm:rounded-t-[3rem] sm:pt-28 sm:pb-40 lg:min-h-[max(100dvh,72rem)] ${className}`}
     >
-      <div className="mx-auto w-full max-w-6xl container-px">{children}</div>
-    </section>
-  );
-}
-
-// Emphasize the last word of a heading with the highlight color.
-function highlightLastWord(title: string): ReactNode {
-  const words = title.trim().split(/\s+/);
-  const last = words.pop() ?? title;
-  const lead = words.join(" ");
-  return (
-    <>
-      {lead && `${lead} `}
-      <span className="text-highlight">{last}</span>
-    </>
-  );
-}
-
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  index,
-  align = "left",
-}: {
-  eyebrow: string;
-  title: string;
-  description?: string;
-  index?: string;
-  align?: "left" | "center";
-}) {
-  // Headings wrap on phones, so centre them there and go left-aligned from `sm`.
-  const centred = align === "center";
-  return (
-    <Reveal
-      className={`max-w-2xl ${centred ? "mx-auto text-center" : "text-center sm:text-left"}`}
-    >
+      {/* Heading and content stay together as one block, centred in the
+          panel. The extra bottom padding covers the next panel's overlap. */}
       <div
-        className={`flex items-center gap-3 ${
-          centred ? "justify-center" : "justify-center sm:justify-start"
-        }`}
+        className={`relative flex w-full flex-1 flex-col justify-center container-px ${innerClassName}`}
       >
-        {index && (
-          <span className="font-mono text-[11px] tracking-[0.12em] text-faint">
-            {index}
-          </span>
-        )}
-        <span className="h-px w-6 bg-accent/40" />
-        <span className="label-tech text-accent">{eyebrow}</span>
+        {children}
       </div>
-      <h2 className="heading-tech mt-5 text-2xl leading-[1.15] sm:text-4xl sm:leading-[1.08] lg:text-[2.6rem]">
-        {highlightLastWord(title)}
-      </h2>
-      {description && (
-        <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-          {description}
-        </p>
-      )}
-    </Reveal>
+    </section>
   );
 }
